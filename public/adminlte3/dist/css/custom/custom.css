@@ -1,0 +1,22 @@
+.ui-datepicker .ui-datepicker-buttonpane {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 2px
+}
+
+.ui-datepicker .ui-datepicker-current {
+    flex: 1;
+    background-color: #ebebeb; /* Bootstrap blue */
+    color: black;
+    border: none;
+    border-radius: 0;
+    padding: 3px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ui-datepicker .ui-datepicker-current:hover {
+    background-color: #cccccc;
+}
+

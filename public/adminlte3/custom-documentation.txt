@@ -1,0 +1,64 @@
+//_______________________dist/js/crudHandler.js
+<script src="{{ asset('adminlte3/dist/js/ajaxService.js') }}"></script>
+<script src="{{ asset('adminlte3/dist/js/crudHandler.js') }}"></script>
+
+<script>
+$(function() {
+    new CrudHandler({
+        routes: {
+            store:  "{{ route('branch.store') }}",
+            update: "{{ route('branch.update', ':id') }}",
+            delete: "{{ route('branch.delete', ':id') }}",
+            read:   "{{ route('branch.show', ':id') }}"
+        },
+        modals: {
+            create: { form: '#createBranchForm' },
+            update: { form: '#editBranchForm', modal: '#editBranchModal' },
+            delete: { form: '#deleteBranchForm', modal: '#deleteBranchModal' },
+            read:   { modal: '#readBranchModal' }
+        }
+    });
+});
+</script>
+
+
+//_______________________________dist/js/ajaxService.js
+<script src="{{ asset('adminlte3/dist/js/ajaxService.js') }}"></script>
+
+<script>
+$(function() {
+    const ajax = new AjaxService();
+
+    // Create Location
+    $('#createLocationModalForm').on('submit', function(e){
+        e.preventDefault();
+        let fd = new FormData(this);
+        //success: pass custom function or none(default)
+        //error: pass custom function or none(default)
+        ajax.request({
+            url: '{{ route("branches.store") }}',
+            data: formData,
+            success: function(res) {
+                toastr.success(res.success);
+                $('#createBranchModal').modal('hide');
+                setTimeout(() => window.location.reload(), 1000);
+            },
+        });
+    });
+
+    // Delete Location
+    $('.delete-btn').on('click', function(){
+        $('#delete_id').val($(this).data('id'));
+    });
+    $('#deleteLocationModalForm').on('submit', function(e){
+        e.preventDefault();
+        const id = $('#delete_id').val();
+        ajax.request({
+            url: '{{ route("asset.location.delete", ":id") }}'.replace(':id', id),
+            data: $(this).serialize(),
+            success: res => toastr.success(res.success),
+            error: err => toastr.error(err.responseJSON?.error)
+        });
+    });
+});
+</script>
