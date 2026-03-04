@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
-require __DIR__ . '/install.php';
-
-
+// Install process disabled
+// require __DIR__ . '/install.php';
+Route::get('/install', fn () => redirect('/'))->name('install.index');
+Route::get('/install/{any}', fn () => redirect('/'))->where('any', '.*');
 
 Route::get('/clear-config', function () {
     Artisan::call('config:clear');

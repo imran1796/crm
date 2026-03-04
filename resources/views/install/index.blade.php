@@ -9,7 +9,7 @@
 <body class="bg-light">
 <div class="container mt-5">
     <div class="col-md-8 mx-auto card p-4 shadow-sm">
-        <h2 class="mb-3">🚀 Laravel Installer</h2>
+        <h2 class="mb-3"> Laravel Installer</h2>
 
         {{-- Success message --}}
         @if(session('success'))

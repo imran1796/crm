@@ -21,7 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'throttle:api' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         ]);
 
-        $middleware->append(\App\Http\Middleware\CheckInstallation::class);
+        // Installer middleware disabled
+        // $middleware->append(\App\Http\Middleware\CheckInstallation::class);
 
     })
     ->withExceptions(function (Exceptions $exceptions): void {
